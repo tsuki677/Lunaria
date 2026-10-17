@@ -1,58 +1,53 @@
-# Lunaria — лунная тема для Zen Browser
+# Lunaria 🌙
 
-Это кастомизация профиля, а не патч исходников Firefox/Zen. Она использует
-встроенный в эту версию загрузчик Zen Mods. Стили загружаются из
-`chrome/zen-themes/<mod-id>/chrome.css`; Zen сам создаёт
-`chrome/zen-themes.css`, поэтому не редактируйте этот генерируемый файл.
+**Your browser, under the moonlight.**
 
-## Установка
+Lunaria is an unofficial moonlit customization for [Zen Browser](https://zen-browser.app/) with a midnight-blue interface, lavender accents, and a cozy custom new-tab page.
 
-1. Откройте в Zen страницу `about:profiles` и нажмите **Открыть папку** для
-   используемого профиля. Перед изменением файлов закройте Zen.
-2. В папке профиля создайте `chrome/zen-themes/lunaria` и скопируйте
-   туда `chrome.css` из этой папки.
-3. В корне профиля создайте или отредактируйте `zen-themes.json`. Сохраните
-   имеющиеся записи и добавьте этот объект внутрь корневого JSON-объекта:
+## What's included
 
-   ```json
-   "lunaria": {
-     "id": "lunaria",
-     "name": "Lunaria",
-     "version": "1.0.0",
-     "enabled": true
-   }
-   ```
+- `chrome.css` — CSS styling for the browser interface.
+- `startpage.html` — standalone Lunaria start page.
+- `extension/` — a WebExtension that replaces the browser's New Tab page with Lunaria.
 
-   Если файл новый или пустой, оберните запись в `{}`. Если записи уже есть,
-   добавьте запятую между соседними объектами.
-4. Скопируйте `startpage.html` в постоянное место. В настройках Zen для
-   домашней страницы укажите этот локальный HTML-файл (или откройте его и
-   выберите **Использовать текущую страницу**). Чтобы открывать её при запуске
-   или в новых окнах, включите соответствующий параметр в тех же настройках.
-5. Запустите Zen, откройте **Настройки > Mods** и один раз выключите, а затем
-   снова включите **Lunaria**. Zen перестроит сгенерированную таблицу
-   стилей. Если мод не появился, проверьте JSON и перезапустите Zen после
-   исправления файлов профиля.
+## Install the browser theme
 
-Поисковая форма отправляет запрос в DuckDuckGo только после нажатия кнопки
-поиска. Часы и оформление работают локально; страница не загружает внешние
-шрифты, изображения, скрипты и аналитику.
+1. In Zen, open `about:support` and click **Open Folder** next to **Profile Folder**.
+2. Close Zen completely.
+3. In the profile directory, open or create the `chrome` folder.
+4. Copy this repository's `chrome.css` into that folder as `userChrome.css`.
+   If you already have a `userChrome.css`, back it up and merge the rules instead of overwriting it.
+5. Start Zen, open `about:config`, and set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
+6. Restart Zen.
 
-## Поведение новых вкладок
+## Use Lunaria as the New Tab page
 
-В этой версии для домашней страницы доступен параметр
-`browser.startup.homepage`, но нет поддерживаемой настройки для замены каждой
-`about:newtab` на произвольный локальный HTML-файл. Поэтому домашняя страница
-не меняет содержимое новой вкладки. Открывайте её кнопкой «Домой» или напрямую.
+### Option A: Test the Lunaria extension
 
-## Удаление и откат
+The extension source is in `extension/`.
 
-В **Настройки > Mods** удалите **Lunaria**, чтобы убрать запись
-профиля и применённые стили, затем перезапустите Zen. Либо закройте Zen,
-удалите только запись `lunaria` из профильного `zen-themes.json` и
-папку `chrome/zen-themes/lunaria`, перезапустите браузер, а затем
-выключите и снова включите Mods, чтобы пересобрать таблицу стилей. В настройках
-домашней страницы удалите этот HTML-файл и при необходимости восстановите
-прежний адрес. Другие данные профиля удалять не нужно.
+1. Download or clone this repository.
+2. In Zen, open `about:debugging#/runtime/this-firefox`.
+3. Find the local browser section, select **Load Temporary Add-on…**, and choose `extension/manifest.json`.
+4. Disable any other new-tab override extension while testing, because only one extension can control the New Tab page at a time.
+5. Open a new tab with `Ctrl+T` or the New Tab button.
 
-Официальный каталог модов сообщества: [Zen Mods](https://zen-browser.app/mods/).
+**Temporary install note:** this developer installation is removed when Zen restarts. A persistent distributable extension must be signed through a supported add-on distribution process. Lunaria has not been published to an add-on store yet.
+
+### Option B: Use New Tab Override
+
+If you already have the **New Tab Override** extension installed, select **Local file** in its settings and choose `startpage.html`. Keep only one new-tab override active at a time.
+
+## Local preview
+
+Open `startpage.html` directly in Zen to preview the page without installing the extension.
+
+## Privacy and behavior
+
+- The new-tab page bundles its CSS locally and does not load remote images, fonts, or analytics.
+- Search queries are sent to Google only when you submit the search form.
+- Shortcut tiles link to their respective websites.
+
+## Unofficial project
+
+Lunaria is an independent community customization and is not affiliated with or endorsed by Zen Browser.
