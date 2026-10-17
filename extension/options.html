@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Настройки Lunaria</title>
+  <link rel="stylesheet" href="options.css">
+  <script src="options.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="moon-mark" aria-hidden="true">☾</div>
+      <div><p class="eyebrow">PERSONALIZE YOUR NIGHT</p><h1>Настройки Lunaria</h1><p class="subtitle">Сделай новую вкладку своей.</p></div>
+    </header>
+    <section class="panel">
+      <h2>Цвета</h2>
+      <p class="hint">Изменения сохраняются автоматически и применяются к новым вкладкам.</p>
+      <div class="color-grid">
+        <label class="color-field"><span>Цвет фона</span><input id="pageBg" type="color" value="#06071a"><code id="pageBgValue">#06071a</code></label>
+        <label class="color-field"><span>Акцентный цвет</span><input id="accent" type="color" value="#a78bfa"><code id="accentValue">#a78bfa</code></label>
+      </div>
+      <button id="resetColors" class="secondary" type="button">Вернуть цвета Lunaria</button>
+    </section>
+    <section class="panel">
+      <h2>Быстрый доступ</h2>
+      <p class="hint">Добавляй сайты, которые хочешь видеть на новой вкладке. Сейчас можно сохранить до 12 собственных ярлыков. Используются только HTTPS-ссылки.</p>
+      <form id="siteForm" class="site-form">
+        <label>Название сайта<input id="siteName" name="siteName" maxlength="24" placeholder="Например, My Dashboard" required></label>
+        <label>Адрес сайта<input id="siteUrl" name="siteUrl" type="url" inputmode="url" placeholder="https://example.com" required></label>
+        <button class="primary" type="submit">Добавить сайт</button>
+      </form>
+      <p id="siteStatus" class="status" role="status" aria-live="polite"></p>
+      <ul id="siteList" class="site-list"></ul>
+    </section>
+    <p class="footnote">Lunaria хранит эти настройки локально в профиле браузера.</p>
+  </main>
+</body>
+</html>
