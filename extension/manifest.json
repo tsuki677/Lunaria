@@ -15,7 +15,12 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "lunaria-new-tab@tsuki677.github.io"
+      "id": "lunaria-new-tab@tsuki677.github.io",
+      "data_collection_permissions": {
+        "required": [
+          "searchTerms"
+        ]
+      }
     }
   }
 }
