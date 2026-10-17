@@ -1,6 +1,6 @@
 # Lunaria New Tab Extension
 
-Lunaria is an unofficial moonlit customization for Zen Browser.
+Lunaria is an unofficial moonlit customization for Zen Browser. Version 1.1.2 adds the crescent-moon extension icon.
 
 ## Features
 
@@ -20,6 +20,6 @@ Lunaria is an unofficial moonlit customization for Zen Browser.
 5. Open a new tab using `Ctrl+T` or the New Tab button.
 6. Click **Настроить** at the bottom of the page to choose colors and manage custom shortcuts.
 
-Temporary add-ons are removed when Zen restarts. For permanent use by other people, the extension needs to be signed through a supported add-on distribution process, for example by submitting it to Mozilla Add-ons. The extension has not yet been submitted or signed.
+Temporary add-ons are removed when Zen restarts. For permanent use by other people, the extension needs to be signed through a supported add-on distribution process, for example by submitting it to Mozilla Add-ons. The extension version with the Lunaria icon has not yet been submitted or signed.
 
 This is an unofficial customization and is not affiliated with the Zen Browser project.
