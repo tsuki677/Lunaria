@@ -1,22 +1,25 @@
 # Lunaria New Tab Extension
 
-This folder contains the WebExtension version of Lunaria.
+Lunaria is an unofficial moonlit customization for Zen Browser.
 
-## What it does
+## Features
 
-- Replaces the browser's New Tab page with Lunaria.
-- Uses the browser's regular new-tab flow, including the keyboard shortcut and New Tab button.
-- Uses bundled HTML and CSS. It does not load remote images, fonts, scripts, or analytics.
-- Search uses Google when you submit a query.
+- Replaces the browser's New Tab page using the standard WebExtension override.
+- Lets you choose the page background and accent colors.
+- Lets you add and remove up to 12 custom shortcuts. Only `https://` sites are accepted.
+- Saves preferences locally through the browser's extension storage.
+- Bundles its HTML, CSS and JavaScript; it does not load remote images, fonts, or analytics.
+- Search queries are sent to Google only when submitted.
 
 ## Test in Zen Browser
 
-1. Open `about:debugging#/runtime/this-firefox`.
-2. Find the local-browser section and click **Load Temporary Add-on…**.
-3. Select `manifest.json` from this folder.
-4. Disable **New Tab Override** while testing Lunaria, because two extensions cannot reliably own the same new-tab page at once.
-5. Keep `zen.urlbar.replace-newtab` set to `false` so the browser opens an actual tab when using its New Tab button.
+1. Download or clone the repository.
+2. Open `about:debugging#/runtime/this-firefox`.
+3. Click **Load Temporary Add-on…** and select `extension/manifest.json`.
+4. Disable **New Tab Override** while testing; only one extension should own the New Tab page at a time.
+5. Open a new tab using `Ctrl+T` or the New Tab button.
+6. Click **Настроить** at the bottom of the page to choose colors and manage custom shortcuts.
 
-Temporary add-ons are removed when the browser restarts. For a persistent install, the extension needs to be signed and distributed through Mozilla Add-ons or another supported signed-install method.
+Temporary add-ons are removed when Zen restarts. For permanent use by other people, the extension needs to be signed through a supported add-on distribution process, for example by submitting it to Mozilla Add-ons. The extension has not yet been submitted or signed.
 
-This is an unofficial customization for Zen Browser and is not affiliated with the Zen Browser project.
+This is an unofficial customization and is not affiliated with the Zen Browser project.
