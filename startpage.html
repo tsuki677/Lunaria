@@ -1,334 +1,197 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="dark">
-    <title>Lunaria</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        font-family: "Segoe UI", "Yu Gothic UI", sans-serif;
-        background: #06071a;
-        color: #c8d8f0;
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        --lavender: #a78bfa;
-        --silver: #c8d8f0;
-        --muted: #8e9bb8;
-        --surface: rgba(17, 21, 51, 0.72);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        min-height: 100vh;
-        margin: 0;
-        display: grid;
-        place-items: center;
-        overflow-x: hidden;
-        background:
-          radial-gradient(ellipse at 50% 0%, rgba(75, 67, 139, 0.2), transparent 48%),
-          radial-gradient(circle at 12% 78%, rgba(63, 85, 151, 0.12), transparent 28%),
-          #06071a;
-      }
-
-      .sky {
-        position: fixed;
-        inset: 0;
-        overflow: hidden;
-        pointer-events: none;
-      }
-
-      .moon {
-        position: absolute;
-        top: 12%;
-        right: 14%;
-        width: 94px;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        background: #e5e7ff;
-        box-shadow: 0 0 36px rgba(200, 216, 240, 0.3), 0 0 100px rgba(167, 139, 250, 0.16);
-      }
-
-      .moon::after {
-        position: absolute;
-        top: -9px;
-        left: 25px;
-        width: 94px;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        background: #090b23;
-        content: "";
-      }
-
-      .stars {
-        position: absolute;
-        inset: 0;
-        background-image:
-          radial-gradient(1px 1px at 12% 18%, rgba(235, 238, 255, 0.78) 50%, transparent),
-          radial-gradient(1px 1px at 32% 32%, rgba(200, 216, 240, 0.58) 50%, transparent),
-          radial-gradient(1px 1px at 72% 24%, rgba(235, 238, 255, 0.72) 50%, transparent),
-          radial-gradient(1px 1px at 84% 68%, rgba(200, 216, 240, 0.6) 50%, transparent),
-          radial-gradient(1px 1px at 22% 76%, rgba(167, 139, 250, 0.74) 50%, transparent),
-          radial-gradient(1px 1px at 62% 84%, rgba(235, 238, 255, 0.58) 50%, transparent);
-      }
-
-      main {
-        position: relative;
-        width: min(680px, calc(100% - 40px));
-        padding: 50px 0 60px;
-      }
-
-      .intro {
-        margin-bottom: 32px;
-        text-align: center;
-      }
-
-      .eyebrow {
-        margin: 0 0 8px;
-        color: var(--lavender);
-        font-size: 0.76rem;
-        letter-spacing: 0.28em;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        margin: 0;
-        color: #f0f2ff;
-        font-size: clamp(2.3rem, 7vw, 3.8rem);
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        text-shadow: 0 0 28px rgba(167, 139, 250, 0.22);
-      }
-
-      .date {
-        margin: 10px 0 0;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      .clock {
-        margin: 0 0 28px;
-        color: var(--silver);
-        font-size: clamp(2.5rem, 8vw, 4rem);
-        font-variant-numeric: tabular-nums;
-        font-weight: 300;
-        letter-spacing: 0.08em;
-        text-align: center;
-      }
-
-      .search {
-        display: flex;
-        gap: 10px;
-        padding: 8px;
-        border: 1px solid rgba(200, 216, 240, 0.16);
-        border-radius: 16px;
-        background: rgba(14, 17, 43, 0.78);
-        box-shadow: 0 12px 42px rgba(0, 0, 0, 0.22), 0 0 24px rgba(167, 139, 250, 0.07);
-        backdrop-filter: blur(16px);
-      }
-
-      .search:focus-within {
-        border-color: rgba(167, 139, 250, 0.62);
-        box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1), 0 12px 42px rgba(0, 0, 0, 0.22);
-      }
-
-      .search input {
-        min-width: 0;
-        flex: 1;
-        padding: 12px 14px;
-        border: 0;
-        outline: 0;
-        background: transparent;
-        color: #f0f2ff;
-        font: inherit;
-        font-size: 1rem;
-      }
-
-      .search input::placeholder {
-        color: #8490ad;
-      }
-
-      .search button {
-        padding: 0 20px;
-        border: 0;
-        border-radius: 11px;
-        background: linear-gradient(135deg, #a78bfa, #8374d6);
-        color: #100f29;
-        cursor: pointer;
-        font: inherit;
-        font-weight: 600;
-        transition: filter 160ms ease, transform 160ms ease;
-      }
-
-      .search button:hover {
-        filter: brightness(1.12);
-        transform: translateY(-1px);
-      }
-
-      .section-title {
-        margin: 35px 0 14px;
-        color: var(--muted);
-        font-size: 0.76rem;
-        font-weight: 500;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-
-      .tiles {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .tile {
-        min-height: 92px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 9px;
-        padding: 15px;
-        border: 1px solid rgba(200, 216, 240, 0.11);
-        border-radius: 14px;
-        background: var(--surface);
-        color: var(--silver);
-        text-decoration: none;
-        backdrop-filter: blur(12px);
-        transition:
-          background-color 160ms ease,
-          border-color 160ms ease,
-          box-shadow 160ms ease,
-          transform 160ms ease;
-      }
-
-      .tile:hover,
-      .tile:focus-visible {
-        border-color: rgba(167, 139, 250, 0.48);
-        background: rgba(34, 31, 73, 0.78);
-        box-shadow: 0 0 22px rgba(167, 139, 250, 0.1);
-        outline: 0;
-        transform: translateY(-2px);
-      }
-
-      .tile-icon {
-        color: var(--lavender);
-        font-size: 1.15rem;
-        line-height: 1;
-      }
-
-      .tile-name {
-        overflow: hidden;
-        font-size: 0.86rem;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      footer {
-        margin-top: 24px;
-        color: #737f9e;
-        font-size: 0.78rem;
-        text-align: center;
-      }
-
-      @media (max-width: 560px) {
-        .moon {
-          top: 5%;
-          right: -25px;
-          width: 70px;
-        }
-
-        main {
-          padding-top: 36px;
-        }
-
-        .tiles {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          scroll-behavior: auto !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="sky" aria-hidden="true">
-      <div class="stars"></div>
-      <div class="moon"></div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#06071a">
+  <title>Lunaria — новая вкладка</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, "Segoe UI", "Yu Gothic UI", sans-serif;
+      background: #06071a;
+      color: #e9ecff;
+      --accent: #a78bfa;
+      --silver: #c8d8f0;
+      --muted: #949dbb;
+      --glass: rgba(17, 20, 47, .70);
+      --line: rgba(200, 216, 240, .14);
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 50% 8%, rgba(99, 87, 170, .22), transparent 42%),
+        radial-gradient(ellipse at 8% 92%, rgba(71, 89, 155, .14), transparent 33%),
+        linear-gradient(145deg, #06071a 0%, #090c24 55%, #08091c 100%);
+    }
+    .sky { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .stars {
+      position: absolute; inset: 0; opacity: .8;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(235,238,255,.9) 50%, transparent 60%),
+        radial-gradient(1px 1px at 29% 31%, rgba(200,216,240,.65) 50%, transparent 60%),
+        radial-gradient(1.5px 1.5px at 78% 16%, rgba(235,238,255,.8) 50%, transparent 60%),
+        radial-gradient(1px 1px at 86% 62%, rgba(200,216,240,.6) 50%, transparent 60%),
+        radial-gradient(1px 1px at 18% 78%, rgba(167,139,250,.8) 50%, transparent 60%),
+        radial-gradient(1px 1px at 65% 85%, rgba(235,238,255,.55) 50%, transparent 60%),
+        radial-gradient(2px 2px at 54% 22%, rgba(167,139,250,.7) 50%, transparent 60%),
+        radial-gradient(1px 1px at 93% 34%, rgba(235,238,255,.75) 50%, transparent 60%);
+    }
+    .moon {
+      position: absolute; top: 10%; right: 12%; width: clamp(64px, 8vw, 102px);
+      aspect-ratio: 1; border-radius: 50%; background: #e6e8ff;
+      box-shadow: 0 0 35px rgba(200,216,240,.25), 0 0 110px rgba(167,139,250,.14);
+      opacity: .88;
+    }
+    .moon::after {
+      content: ""; position: absolute; top: -9%; left: 27%; width: 100%; aspect-ratio: 1;
+      border-radius: 50%; background: #0a0b21;
+    }
+    header {
+      position: relative; z-index: 1; display: flex; justify-content: flex-end;
+      align-items: center; padding: 22px 28px; min-height: 72px;
+    }
+    .brand-chip {
+      display: inline-flex; align-items: center; gap: 8px; color: #b9c4e3;
+      border: 1px solid rgba(200,216,240,.11); background: rgba(8,10,30,.34);
+      border-radius: 20px; padding: 7px 12px; font-size: .78rem; letter-spacing: .04em;
+    }
+    .brand-dot { color: var(--accent); font-size: 1rem; }
+    main {
+      position: relative; z-index: 1; width: min(760px, calc(100% - 36px));
+      margin: auto; padding: 30px 0 66px; text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .logo-row { display: flex; align-items: center; justify-content: center; gap: 13px; margin-bottom: 30px; }
+    .logo-moon {
+      width: 43px; height: 43px; border-radius: 50%; position: relative;
+      background: linear-gradient(145deg, #e7e8ff, #a78bfa);
+      box-shadow: 0 0 30px rgba(167,139,250,.22);
+    }
+    .logo-moon::after {
+      content: ""; position: absolute; width: 39px; height: 39px; right: -7px; top: -4px;
+      border-radius: 50%; background: #090b22;
+    }
+    h1 {
+      margin: 0; font-weight: 500; font-size: clamp(2.5rem, 6vw, 3.6rem);
+      letter-spacing: -.045em; color: #f0f2ff;
+      text-shadow: 0 0 35px rgba(167,139,250,.16);
+    }
+    .tagline { margin: 7px 0 27px; color: var(--muted); font-size: .93rem; }
+    .search {
+      width: min(100%, 620px); display: flex; align-items: center; gap: 13px;
+      padding: 7px 9px 7px 20px; border: 1px solid rgba(200,216,240,.17);
+      border-radius: 28px; background: rgba(22,25,54,.83);
+      box-shadow: 0 12px 40px rgba(0,0,0,.18), 0 0 26px rgba(167,139,250,.06);
+      backdrop-filter: blur(18px); transition: border-color .18s ease, box-shadow .18s ease;
+    }
+    .search:focus-within {
+      border-color: rgba(167,139,250,.64);
+      box-shadow: 0 0 0 3px rgba(167,139,250,.09), 0 12px 40px rgba(0,0,0,.2);
+    }
+    .search-icon { color: #abb6d5; font-size: 1.3rem; line-height: 1; }
+    .search input {
+      flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+      color: #f0f2ff; padding: 13px 0; font: inherit; font-size: .98rem;
+    }
+    .search input::placeholder { color: #939dbb; }
+    .search button {
+      flex: 0 0 auto; width: 42px; height: 42px; border: 0; border-radius: 50%;
+      display: grid; place-items: center; background: rgba(167,139,250,.17);
+      color: #e5ddff; cursor: pointer; font-size: 1.15rem;
+      transition: background .18s ease, transform .18s ease;
+    }
+    .search button:hover { background: rgba(167,139,250,.3); transform: scale(1.04); }
+    .section-title {
+      margin: 43px 0 20px; color: #9da8c7; font-size: .78rem; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .tiles {
+      width: min(100%, 640px); display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 15px 12px;
+    }
+    .tile {
+      min-width: 0; display: flex; align-items: center; flex-direction: column; gap: 10px;
+      color: #dce2f7; text-decoration: none; border-radius: 15px; padding: 9px 2px 10px;
+      transition: background .16s ease, transform .16s ease;
+    }
+    .tile:hover, .tile:focus-visible { background: rgba(167,139,250,.09); outline: none; transform: translateY(-2px); }
+    .tile-icon {
+      width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+      background: rgba(200,216,240,.09); border: 1px solid rgba(200,216,240,.12);
+      box-shadow: 0 4px 18px rgba(0,0,0,.14); font-size: 1.25rem; font-weight: 600;
+    }
+    .tile-name { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .78rem; color: #cbd4ee; }
+    .yume { color: #eedcff; background: linear-gradient(145deg, rgba(167,139,250,.3), rgba(68,76,140,.23)); }
+    .youtube { color: #ff858b; background: rgba(255,70,82,.12); }
+    .github { color: #f2f3ff; background: rgba(200,216,240,.12); }
+    .anilist { color: #84aaff; background: rgba(60,115,250,.15); }
+    .wiki { color: #e6e8ff; }
+    .reddit { color: #ffad86; background: rgba(255,100,50,.12); }
+    .discord { color: #adb7ff; background: rgba(88,101,242,.15); }
+    .spotify { color: #8ee9b3; background: rgba(29,185,84,.12); }
+    footer {
+      position: relative; z-index: 1; display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; padding: 18px 24px 21px; color: #7f8aaa; font-size: .75rem;
+    }
+    .footer-note { opacity: .88; }
+    .customize {
+      border: 1px solid rgba(200,216,240,.14); border-radius: 22px;
+      padding: 9px 14px; color: #cbd4ee; background: rgba(15,18,43,.62);
+      font: inherit; font-size: .78rem;
+    }
+    @media (max-width: 680px) {
+      .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 400px; }
+      .moon { top: 8%; right: -23px; width: 65px; opacity: .54; }
+      main { padding-top: 25px; }
+      .section-title { margin-top: 34px; }
+      header { min-height: 58px; padding: 14px 17px; }
+      footer { padding: 16px; }
+    }
+    @media (max-width: 380px) {
+      .logo-row { gap: 9px; }
+      .logo-moon { width: 34px; height: 34px; }
+      .logo-moon::after { width: 31px; height: 31px; }
+      h1 { font-size: 2.25rem; }
+      .tile-icon { width: 46px; height: 46px; }
+      .search { padding-left: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><div class="stars"></div><div class="moon"></div></div>
+  <header><span class="brand-chip"><span class="brand-dot">✦</span> LUNARIA · NEW TAB</span></header>
+  <main>
+    <div class="logo-row" aria-label="Lunaria">
+      <span class="logo-moon" aria-hidden="true"></span>
+      <h1>Lunaria</h1>
     </div>
-    <main>
-      <header class="intro">
-        <p class="eyebrow">Find your quiet corner</p>
-        <h1>Lunaria</h1>
-        <p class="date" id="date"></p>
-      </header>
-
-      <p class="clock" id="clock" aria-label="Текущее время"></p>
-
-      <form class="search" action="https://duckduckgo.com/" method="get" role="search">
-        <input
-          type="search"
-          name="q"
-          placeholder="Искать в интернете…"
-          aria-label="Поисковый запрос"
-          autocomplete="off"
-          required
-        >
-        <button type="submit">Найти</button>
-      </form>
-
-      <h2 class="section-title">Избранное</h2>
-      <nav class="tiles" aria-label="Избранные сайты">
-        <a class="tile" href="https://yumeplay.fun">
-          <span class="tile-icon" aria-hidden="true">✦</span>
-          <span class="tile-name">YumePlay</span>
-        </a>
-        <a class="tile" href="https://www.youtube.com">
-          <span class="tile-icon" aria-hidden="true">◉</span>
-          <span class="tile-name">YouTube</span>
-        </a>
-        <a class="tile" href="https://github.com">
-          <span class="tile-icon" aria-hidden="true">⌘</span>
-          <span class="tile-name">GitHub</span>
-        </a>
-        <a class="tile" href="https://www.wikipedia.org">
-          <span class="tile-icon" aria-hidden="true">❖</span>
-          <span class="tile-name">Wikipedia</span>
-        </a>
-      </nav>
-
-      <footer>Где ночь встречается с мечтой</footer>
-    </main>
-    <script>
-      const timeFormatter = new Intl.DateTimeFormat("ru-RU", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-      const dateFormatter = new Intl.DateTimeFormat("ru-RU", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-      });
-      const clock = document.getElementById("clock");
-      const date = document.getElementById("date");
-
-      function updateTime() {
-        const now = new Date();
-        clock.textContent = timeFormatter.format(now);
-        date.textContent = dateFormatter.format(now);
-      }
-
-      updateTime();
-      window.setInterval(updateTime, 30_000);
-    </script>
-  </body>
+    <p class="tagline">Твоя тихая сторона интернета</p>
+    <form class="search" action="https://www.google.com/search" method="get" role="search">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input type="search" name="q" placeholder="Искать в Google или ввести запрос…" aria-label="Поиск Google" autocomplete="off" required>
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+    <h2 class="section-title">Быстрый доступ</h2>
+    <nav class="tiles" aria-label="Избранные сайты">
+      <a class="tile" href="https://yumeplay.fun"><span class="tile-icon yume">✦</span><span class="tile-name">YumePlay</span></a>
+      <a class="tile" href="https://www.youtube.com"><span class="tile-icon youtube">▶</span><span class="tile-name">YouTube</span></a>
+      <a class="tile" href="https://github.com"><span class="tile-icon github">⌘</span><span class="tile-name">GitHub</span></a>
+      <a class="tile" href="https://anilist.co"><span class="tile-icon anilist">A</span><span class="tile-name">AniList</span></a>
+      <a class="tile" href="https://www.wikipedia.org"><span class="tile-icon wiki">W</span><span class="tile-name">Wikipedia</span></a>
+      <a class="tile" href="https://www.reddit.com"><span class="tile-icon reddit">r</span><span class="tile-name">Reddit</span></a>
+      <a class="tile" href="https://discord.com"><span class="tile-icon discord">◉</span><span class="tile-name">Discord</span></a>
+      <a class="tile" href="https://open.spotify.com"><span class="tile-icon spotify">♫</span><span class="tile-name">Spotify</span></a>
+    </nav>
+  </main>
+  <footer><span class="footer-note">Где ночь встречается с мечтой · Lunaria</span><span class="customize">☾ Под луной</span></footer>
+</body>
 </html>
