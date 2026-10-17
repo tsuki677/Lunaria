@@ -1,0 +1,81 @@
+/* Moonlight Browser - Zen Mods stylesheet */
+
+:root {
+  --toolbar-bgcolor: #06071a !important;
+  --toolbar-color: #c8d8f0 !important;
+  --lwt-accent-color: #06071a !important;
+  --lwt-text-color: #c8d8f0 !important;
+}
+
+#navigator-toolbox,
+#TabsToolbar,
+#nav-bar,
+#PersonalToolbar {
+  background-color: rgba(6, 7, 26, 0.94) !important;
+  color: #c8d8f0 !important;
+}
+
+#navigator-toolbox {
+  border-bottom: 1px solid rgba(167, 139, 250, 0.22) !important;
+  box-shadow: 0 5px 24px rgba(4, 5, 20, 0.38) !important;
+}
+
+.tabbrowser-tab .tab-background {
+  border: 1px solid transparent !important;
+  border-radius: 10px !important;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease !important;
+}
+
+.tabbrowser-tab:hover .tab-background {
+  background-color: rgba(167, 139, 250, 0.1) !important;
+  border-color: rgba(167, 139, 250, 0.2) !important;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+  background: linear-gradient(
+    115deg,
+    rgba(167, 139, 250, 0.19),
+    rgba(200, 216, 240, 0.07)
+  ) !important;
+  border-color: rgba(167, 139, 250, 0.42) !important;
+  box-shadow: 0 0 16px rgba(167, 139, 250, 0.14) !important;
+}
+
+#urlbar-background,
+.searchbar-textbox {
+  background-color: rgba(12, 15, 40, 0.92) !important;
+  border: 1px solid rgba(200, 216, 240, 0.17) !important;
+  border-radius: 12px !important;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease !important;
+}
+
+#urlbar[focused="true"] #urlbar-background {
+  border-color: rgba(167, 139, 250, 0.72) !important;
+  box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.13) !important;
+}
+
+#sidebar-box,
+#sidebar,
+#sidebar-header {
+  background-color: #080a20 !important;
+  color: #c8d8f0 !important;
+}
+
+.toolbarbutton-1:hover,
+.toolbarbutton-1[open="true"] {
+  background-color: rgba(167, 139, 250, 0.14) !important;
+  border-radius: 9px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabbrowser-tab .tab-background,
+  #urlbar-background,
+  .searchbar-textbox {
+    transition: none !important;
+  }
+}
