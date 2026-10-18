@@ -22,7 +22,7 @@ Lunaria is an unofficial moonlit customization for [Zen Browser](https://zen-bro
 6. Press `Ctrl+T` or click the New Tab button.
 7. Select **Настроить** at the bottom of the page to choose colors or manage shortcuts.
 
-Temporary add-ons are removed when Zen restarts. To distribute a persistent version, Lunaria must go through a supported signing/distribution process, for example submission to Mozilla Add-ons. Lunaria has not been submitted or signed yet.
+Temporary add-ons are removed when Zen restarts. To distribute a persistent version, Lunaria must be submitted through the existing Mozilla Add-ons Developer Hub entry with **On this site** selected, then pass Mozilla review before it appears in the public gallery.
 
 ## Install the browser theme
 
