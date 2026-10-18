@@ -84,23 +84,31 @@
       box-shadow: 0 12px 40px rgba(0,0,0,.18), 0 0 26px color-mix(in srgb, var(--accent) 6%, transparent);
       backdrop-filter: blur(18px); transition: border-color .18s ease, box-shadow .18s ease;
     }
-    .search:focus-within {
+    .search-link {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .search:hover, .search:focus-visible {
       border-color: color-mix(in srgb, var(--accent) 64%, transparent);
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 9%, transparent), 0 12px 40px rgba(0,0,0,.2);
+      outline: none;
     }
     .search-icon { color: #abb6d5; font-size: 1.3rem; line-height: 1; }
-    .search input {
-      flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
-      color: #f0f2ff; padding: 13px 0; font: inherit; font-size: .98rem;
+    .search-prompt {
+      flex: 1; min-width: 0; color: #939dbb; padding: 13px 0;
+      font: inherit; font-size: .98rem; text-align: left;
     }
-    .search input::placeholder { color: #939dbb; }
-    .search button {
-      flex: 0 0 auto; width: 42px; height: 42px; border: 0; border-radius: 50%;
+    .search-launch {
+      flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
       display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 17%, transparent);
-      color: #e5ddff; cursor: pointer; font-size: 1.15rem;
+      color: #e5ddff; font-size: 1.15rem;
       transition: background .18s ease, transform .18s ease;
     }
-    .search button:hover { background: color-mix(in srgb, var(--accent) 30%, transparent); transform: scale(1.04); }
+    .search:hover .search-launch, .search:focus-visible .search-launch {
+      background: color-mix(in srgb, var(--accent) 30%, transparent);
+      transform: scale(1.04);
+    }
     .section-title {
       margin: 43px 0 20px; color: #9da8c7; font-size: .78rem; font-weight: 500;
       letter-spacing: .12em; text-transform: uppercase;
