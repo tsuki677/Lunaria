@@ -1,6 +1,6 @@
 # Privacy Policy — Lunaria
 
-Last updated: 17 October 2026
+Last updated: 18 October 2026
 
 Lunaria is an independent browser customization. It does not run analytics, advertising trackers, or background telemetry.
 
@@ -14,7 +14,7 @@ Lunaria does not send these settings to the project author or a Lunaria-operated
 
 ## Search
 
-When you type a query into the search box and submit it, Lunaria navigates to Google Search with that query. Google receives the query as part of the search request and handles it under Google's own privacy terms. Lunaria does not transmit a search query until you submit the form.
+The Lunaria new-tab page does not include a text-entry search form and does not collect or transmit search terms. It provides a link that opens the Google homepage. If you choose to search after arriving on Google's website, your interaction and query are handled directly by Google and subject to Google's own privacy terms. Lunaria does not read that query.
 
 ## Shortcut tiles
 
