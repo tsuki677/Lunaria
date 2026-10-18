@@ -1,6 +1,6 @@
 # Lunaria New Tab Extension
 
-Lunaria is an unofficial moonlit customization for Zen Browser. Version 1.1.3 adds the crescent-moon extension icon.
+Lunaria is an unofficial moonlit customization for Zen Browser. Version 1.1.4 adds the crescent-moon extension icon.
 
 ## Features
 
