@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Lunaria — New Tab",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A moonlit, anime-inspired new tab page with customizable colors and shortcuts.",
   "permissions": [
     "storage"
@@ -18,7 +18,7 @@
       "id": "lunaria-new-tab@tsuki677.github.io",
       "data_collection_permissions": {
         "required": [
-          "searchTerms"
+          "none"
         ]
       }
     }
