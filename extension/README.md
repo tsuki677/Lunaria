@@ -1,6 +1,6 @@
 # Lunaria New Tab Extension
 
-Lunaria is an unofficial moonlit customization for Zen Browser. Version 1.1.4 adds the crescent-moon extension icon.
+Lunaria is an unofficial moonlit customization for Zen Browser. Version 1.1.5 uses a Google homepage launcher instead of handling search queries inside the extension.
 
 ## Features
 
@@ -9,7 +9,7 @@ Lunaria is an unofficial moonlit customization for Zen Browser. Version 1.1.4 ad
 - Lets you add and remove up to 12 custom shortcuts. Only `https://` sites are accepted.
 - Saves preferences locally through the browser's extension storage.
 - Bundles its HTML, CSS and JavaScript; it does not load remote images, fonts, or analytics.
-- Search queries are sent to Google only when submitted.
+- The new-tab page contains a link to the Google homepage; queries are entered directly on Google, not into Lunaria.
 
 ## Test in Zen Browser
 
